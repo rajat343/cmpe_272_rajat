@@ -1,0 +1,3 @@
+hello_service/node_modules/*
+world_service/node_modules/*
+aggregator_service/node_modules/*
