@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: aggregator-deployment
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: aggregator-service
+    template:
+        metadata:
+            labels:
+                app: aggregator-service
+        spec:
+            containers:
+                - name: aggregator-container
+                  image: rajatmishra343/aggregator-service:latest
+                  ports:
+                      - containerPort: 3003
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: aggregator-service
+spec:
+    selector:
+        app: aggregator-service
+    ports:
+        - protocol: TCP
+          port: 3003
+          targetPort: 3003
+    type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: aggregator-ingress
+    annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+    rules:
+        - host: aggregator.192.168.49.2.nip.io
+          http:
+              paths:
+                  - path: /helloworld
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: aggregator-service
+                            port:
+                                number: 3003
