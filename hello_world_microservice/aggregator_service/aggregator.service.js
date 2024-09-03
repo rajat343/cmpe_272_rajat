@@ -25,6 +25,17 @@ app.get("/helloworld", async (req, res) => {
 				);
 			}
 		}
+		if (!helloResponse) {
+			try {
+				helloResponse = await axios.get(
+					"http://hello-service:3001/hello"
+				);
+			} catch (err) {
+				console.error(
+					`Error getting data from hello cluster: ${err?.message}`
+				);
+			}
+		}
 		try {
 			worldResponse = await axios.get("http://localhost:3002/world");
 		} catch (err) {
@@ -43,7 +54,18 @@ app.get("/helloworld", async (req, res) => {
 				);
 			}
 		}
-		const combinedMessage = `${helloResponse.data} ${worldResponse.data}`;
+		if (!worldResponse) {
+			try {
+				worldResponse = await axios.get(
+					"http://world-service:3002/world"
+				);
+			} catch (err) {
+				console.error(
+					`Error getting data from world cluster: ${err?.message}`
+				);
+			}
+		}
+		const combinedMessage = `${helloResponse?.data} ${worldResponse?.data}`;
 		res.send(combinedMessage);
 	} catch (error) {
 		res.status(500).send("Error combining responses");
