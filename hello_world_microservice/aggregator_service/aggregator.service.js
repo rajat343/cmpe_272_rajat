@@ -17,7 +17,7 @@ app.get("/helloworld", async (req, res) => {
 		if (!helloResponse) {
 			try {
 				helloResponse = await axios.get(
-					"http://hello_container:3001/hello"
+					"http://hello-container:3001/hello"
 				);
 			} catch (err) {
 				console.error(
@@ -35,7 +35,7 @@ app.get("/helloworld", async (req, res) => {
 		if (!worldResponse) {
 			try {
 				worldResponse = await axios.get(
-					"http://world_container:3002/world"
+					"http://world-container:3002/world"
 				);
 			} catch (err) {
 				console.error(
