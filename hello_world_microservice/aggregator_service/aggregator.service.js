@@ -25,6 +25,17 @@ app.get("/helloworld", async (req, res) => {
 				);
 			}
 		}
+		if (!helloResponse) {
+			try {
+				helloResponse = await axios.get(
+					"http://hello_container:3001/hello"
+				);
+			} catch (err) {
+				console.error(
+					`Error getting data from hello container (kube): ${err?.message}`
+				);
+			}
+		}
 		try {
 			worldResponse = await axios.get("http://localhost:3002/world");
 		} catch (err) {
@@ -36,6 +47,17 @@ app.get("/helloworld", async (req, res) => {
 			try {
 				worldResponse = await axios.get(
 					"http://world-container:3002/world"
+				);
+			} catch (err) {
+				console.error(
+					`Error getting data from world container: ${err?.message}`
+				);
+			}
+		}
+		if (!worldResponse) {
+			try {
+				worldResponse = await axios.get(
+					"http://world_container:3002/world"
 				);
 			} catch (err) {
 				console.error(
