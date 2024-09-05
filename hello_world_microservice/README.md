@@ -31,21 +31,41 @@ docker push rajatmishra343/hello-service:latest
 ## World Service
 
 To build docker image for world-service, go to the world directory and run below commands.
+
 docker build -t world-service -f world.Dockerfile .
 
-Run the image using below command
-docker run -d --name world-container --network my_network -p 3002:3002 world-service
+Run the image using below command:
 
-(If container is running you could test it by going to url http://localhost:3002/world => return "World")
+docker run -d --name world-container --network my_network -p 3002:3002 world-service
+(If container is running you could test it by going to url http://localhost:3002/world => returns "World")
+
+For kubernetes we need to push it to the docker hub.
+Use below commands to tag the image:
+
 docker tag world-service:latest rajatmishra343/world-service:latest
+
+Use below commands to push the image:
+
 docker push rajatmishra343/world-service:latest
 
 ## Aggregator service
 
+To build docker image for aggregator-service, go to the aggregator directory and run below commands.
+
 docker build -t aggregator-service -f aggregator.Dockerfile .
+
+Run the image using below command:
+
 docker run -d --name aggregator-container --network my_network -p 3003:3003 aggregator-service
-(If container is running you could test it by going to url http://localhost:3003/helloworld => return "Hello World")
+(If container is running you could test it by going to url http://localhost:3003/helloworld => returns "Hello World")
+
+For kubernetes we need to push it to the docker hub.
+Use below commands to tag the image:
+
 docker tag aggregator-service:latest rajatmishra343/aggregator-service:latest
+
+Use below commands to push the image:
+
 docker push rajatmishra343/aggregator-service:latest
 
 Now all 3 docker images are added to docker hub
