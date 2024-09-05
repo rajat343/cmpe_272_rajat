@@ -11,14 +11,21 @@ docker network create <network_name> (eg. docker network create my_network)
 ## Hello Service
 
 To build docker image for hello-service, go to the hello directory and run below commands.
+
 docker build -t hello-service -f hello.Dockerfile .
+
 Run the image using below command:
+
 docker run -d --name hello-container --network my_network -p 3001:3001 hello-service
 (If container is running you could test it by going to url http://localhost:3001/hello => returns "Hello")
+
 For kubernetes we need to push it to the docker hub.
 Use below commands to tag the image:
+
 docker tag hello-service:latest rajatmishra343/hello-service:latest (rajatmishra343 is my docker username)
+
 Use below commands to push the image:
+
 docker push rajatmishra343/hello-service:latest
 
 ## World Service
