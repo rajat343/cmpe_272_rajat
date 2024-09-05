@@ -9,25 +9,32 @@ Create a docker network using below command.
 docker network create <network_name> (eg. docker network create my_network)
 
 ## Hello Service
+
 To build docker image for hello-service, go to the hello directory and run below commands.
 docker build -t hello-service -f hello.Dockerfile .
-Run the image using below command
+Run the image using below command:
 docker run -d --name hello-container --network my_network -p 3001:3001 hello-service
 (If container is running you could test it by going to url http://localhost:3001/hello => returns "Hello")
-For kubernetes we need to push it to the docker hub
-use below commands for that
+For kubernetes we need to push it to the docker hub.
+Use below commands to tag the image:
 docker tag hello-service:latest rajatmishra343/hello-service:latest (rajatmishra343 is my docker username)
-and
+Use below commands to push the image:
 docker push rajatmishra343/hello-service:latest
 
 ## World Service
+
+To build docker image for world-service, go to the world directory and run below commands.
 docker build -t world-service -f world.Dockerfile .
+
+Run the image using below command
 docker run -d --name world-container --network my_network -p 3002:3002 world-service
+
 (If container is running you could test it by going to url http://localhost:3002/world => return "World")
 docker tag world-service:latest rajatmishra343/world-service:latest
 docker push rajatmishra343/world-service:latest
 
 ## Aggregator service
+
 docker build -t aggregator-service -f aggregator.Dockerfile .
 docker run -d --name aggregator-container --network my_network -p 3003:3003 aggregator-service
 (If container is running you could test it by going to url http://localhost:3003/helloworld => return "Hello World")
@@ -52,10 +59,8 @@ examples are below
 http://127.0.0.1:57491/hello (returns Hello)
 ![alt text](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/hello.png?raw=true)
 
-
 http://127.0.0.1:57513/world (returns World)
 ![alt text](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/world.png?raw=true)
-
 
 http://127.0.0.1:57540/helloworld (returns Hello World)
 ![alt text](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/aggregator.png?raw=true)
@@ -66,3 +71,8 @@ ngrok http <port_number> (eg. ngrok http 57540)
 use the returned base url + endpoint to see the output
 (eg. https://da14-2601-646-a002-b10-350f-6eea-eb9d-9bdd.ngrok-free.app/helloworld)
 ![alt text](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/aggregator_ngrok.png?raw=true)
+
+Docker Hub images urls:
+https://hub.docker.com/repository/docker/rajatmishra343/hello-service
+https://hub.docker.com/repository/docker/rajatmishra343/world-service
+https://hub.docker.com/repository/docker/rajatmishra343/aggregator-service
