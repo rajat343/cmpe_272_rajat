@@ -3,11 +3,10 @@ For this assignement I created 3 separate services hello-service, world-service 
 All these 3 services are inside separate folders.
 use npm install to install modules for each service.
 
-Also since aggregator-service calls hello-service and world-service separately to get the final output "Hello World" (using docker), they need to be present inside a same docker
-network.
+Also since aggregator-service calls hello-service and world-service separately to get the final output "Hello World" (using docker), they need to be present inside a same docker network.
 
 Create a docker network using below command.
-docker network create <network_name> (docker network create my_network => used by me)
+docker network create <network_name> (eg. docker network create my_network)
 
 Hello Service
 To build docker image for hello-service, go to the hello directory and run below commands.
