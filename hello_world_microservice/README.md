@@ -102,5 +102,7 @@ use the returned base url + endpoint to see the output
 Docker Hub images urls:
 
 https://hub.docker.com/repository/docker/rajatmishra343/hello-service
+
 https://hub.docker.com/repository/docker/rajatmishra343/world-service
+
 https://hub.docker.com/repository/docker/rajatmishra343/aggregator-service
