@@ -7,6 +7,7 @@ app.get("/helloworld", async (req, res) => {
 	try {
 		let helloResponse;
 		let worldResponse;
+		// for running locally
 		try {
 			helloResponse = await axios.get("http://localhost:3001/hello");
 		} catch (err) {
@@ -14,6 +15,7 @@ app.get("/helloworld", async (req, res) => {
 				`Error getting data from hello server: ${err?.message}`
 			);
 		}
+		// for running in docker container
 		if (!helloResponse) {
 			try {
 				helloResponse = await axios.get(
@@ -25,6 +27,7 @@ app.get("/helloworld", async (req, res) => {
 				);
 			}
 		}
+		// for running in kubernetes
 		if (!helloResponse) {
 			try {
 				helloResponse = await axios.get(
@@ -36,6 +39,7 @@ app.get("/helloworld", async (req, res) => {
 				);
 			}
 		}
+		// for running locally
 		try {
 			worldResponse = await axios.get("http://localhost:3002/world");
 		} catch (err) {
@@ -43,6 +47,7 @@ app.get("/helloworld", async (req, res) => {
 				`Error getting data from world server: ${err?.message}`
 			);
 		}
+		// for running in docker container
 		if (!worldResponse) {
 			try {
 				worldResponse = await axios.get(
@@ -54,6 +59,7 @@ app.get("/helloworld", async (req, res) => {
 				);
 			}
 		}
+		// for running in kubernetes
 		if (!worldResponse) {
 			try {
 				worldResponse = await axios.get(
