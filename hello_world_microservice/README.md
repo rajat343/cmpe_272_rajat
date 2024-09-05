@@ -1,6 +1,7 @@
 For this assignement I created 3 separate services hello-service, world-service and aggregator-service.
 
 All these 3 services are inside separate folders.
+use npm install to install modules for each service.
 
 Also since aggregator-service calls hello-service and world-service separately to get the final output "Hello World" (using docker), they need to be present inside a same docker
 network.
