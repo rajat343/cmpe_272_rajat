@@ -1,4 +1,5 @@
 For this assignment, I created three separate services:
+
 - `hello-service`
 - `world-service`
 - `aggregator-service`
@@ -30,12 +31,14 @@ docker run -d --name hello-container --network my_network -p 3001:3001 hello-ser
 ```
 
 Test:
+
 - `http://localhost:3001/hello` -> returns `Hello`
 
 Tag and push to Docker Hub:
 
 ```bash
 docker tag hello-service:latest rajatmishra343/hello-service:latest
+
 docker push rajatmishra343/hello-service:latest
 ```
 
@@ -54,12 +57,14 @@ docker run -d --name world-container --network my_network -p 3002:3002 world-ser
 ```
 
 Test:
+
 - `http://localhost:3002/world` -> returns `World`
 
 Tag and push to Docker Hub:
 
 ```bash
 docker tag world-service:latest rajatmishra343/world-service:latest
+
 docker push rajatmishra343/world-service:latest
 ```
 
@@ -78,12 +83,14 @@ docker run -d --name aggregator-container --network my_network -p 3003:3003 aggr
 ```
 
 Test:
+
 - `http://localhost:3003/helloworld` -> returns `Hello World`
 
 Tag and push to Docker Hub:
 
 ```bash
 docker tag aggregator-service:latest rajatmishra343/aggregator-service:latest
+
 docker push rajatmishra343/aggregator-service:latest
 ```
 
@@ -115,14 +122,15 @@ minikube service aggregator-service --url
 Use the returned URL + endpoint in your browser or Postman.
 
 Examples:
+
 - `http://127.0.0.1:57491/hello` (returns `Hello`)
-![hello output](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/hello.png?raw=true)
+  ![hello output](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/hello.png?raw=true)
 
 - `http://127.0.0.1:57513/world` (returns `World`)
-![world output](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/world.png?raw=true)
+  ![world output](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/world.png?raw=true)
 
 - `http://127.0.0.1:57540/helloworld` (returns `Hello World`)
-![aggregator output](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/aggregator.png?raw=true)
+  ![aggregator output](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/aggregator.png?raw=true)
 
 ## Expose Publicly with ngrok
 
@@ -135,8 +143,9 @@ ngrok http 57540
 ```
 
 Use the returned ngrok URL + endpoint to test:
+
 - Example: `https://da14-2601-646-a002-b10-350f-6eea-eb9d-9bdd.ngrok-free.app/helloworld`
-![aggregator ngrok output](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/aggregator_ngrok.png?raw=true)
+  ![aggregator ngrok output](https://github.com/rajat343/cmpe_272_rajat/blob/main/hello_world_microservice/outputs/aggregator_ngrok.png?raw=true)
 
 ## Docker Hub Image URLs
 
