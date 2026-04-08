@@ -111,6 +111,53 @@ kubectl apply -f world-deployment.yaml
 kubectl apply -f aggregator-deployment.yaml
 ```
 
+Check that pods are created:
+
+```bash
+kubectl get pods
+# Extended output (node, pod IP, etc.)
+kubectl get pods -o wide
+# Node OS details
+kubectl get nodes -o wide
+```
+
+Scale and replace pods with ReplicaSet:
+
+```bash
+# 1) Get ReplicaSet names
+kubectl get replicaset
+
+# 2) Get ReplicaSet details
+kubectl describe rs <name>
+
+# 3) Scale a ReplicaSet up/down
+kubectl scale replicaset <replicaset_name> --replicas=<number>
+# Example:
+kubectl scale replicaset hello-deployment-7c9b5d6b4f --replicas=3
+
+# 4) Verify updated pod count
+kubectl get pods
+
+# 5) Replace a pod (ReplicaSet will auto-create a new one)
+kubectl delete pod <pod_name>
+# Example:
+kubectl delete pod hello-deployment-7c9b5d6b4f-abcde
+```
+
+ReplicaSet details:
+
+```bash
+kubectl describe replicaset new-replica-set
+```
+
+Describe a specific pod for detailed status/events:
+
+```bash
+kubectl describe pod <pod_name>
+# Example:
+kubectl describe pod aggregator-deployment-6f7f8f6d9f-abcde
+```
+
 Get the base URL for each service:
 
 ```bash
